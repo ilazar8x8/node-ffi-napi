@@ -1,6 +1,6 @@
 {
   "name": "ffi-napi",
-  "version": "4.0.3",
+  "version": "4.0.7",
   "license": "MIT",
   "author": "Anna Henningsen <anna@addaleax.net>",
   "contributors": [
@@ -8,7 +8,7 @@
     "Nathan Rajlich <nathan@tootallnate.net>",
     "Gabor Mezo <gabor.mezo@outlook.com>"
   ],
-  "description": "A foreign function interface (FFI) for Node.js, N-API style",
+  "description": "A foreign function interface (FFI) for Node.js, N-API style, with \"v8::ArrayBuffer::GetBackingStore\" patch",
   "keywords": [
     "foreign",
     "function",
@@ -30,12 +30,12 @@
     "get-uv-event-loop-napi-h": "^1.0.5",
     "node-addon-api": "^3.0.0",
     "node-gyp-build": "^4.2.1",
-    "ref-napi": "^2.0.1 || ^3.0.2",
+    "ref-napi": "^4.0.4",
     "ref-struct-di": "^1.1.0"
   },
   "devDependencies": {
     "fs-extra": "^9.0.0",
-    "mocha": "^7.1.1",
+    "mocha": "^8.4.0",
     "nyc": "^15.0.0",
     "prebuildify": "^4.0.0",
     "prebuildify-ci": "^1.0.5",
@@ -43,8 +43,7 @@
   },
   "scripts": {
     "install": "node-gyp-build",
-    "prebuild": "prebuildify --napi --tag-armv --tag-uv",
-    "prepack": "prebuildify-ci download && ([ $(ls prebuilds | wc -l) = '5' ] || (echo 'Some prebuilds are missing'; exit 1))",
+    "prebuild": "prebuildify --napi --tag-uv",
     "test": "node-gyp rebuild --directory test && nyc mocha --expose-gc --reporter spec"
   },
   "repository": {
